@@ -1,0 +1,3776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>What's Your Hue?</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap');
+
+:root {
+    --brown: #5B4636;
+    --dark-brown: #4A3629;
+    --cream: #F7F1E8;
+    --white: #FFFDF9;
+    --soft-brown: #6B5140;
+    --border: #D8C8B8;
+    --light-brown: #EEE5DB;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--brown);
+    overflow-x: hidden;
+}
+
+/* NAV */
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 82px;
+    display: flex;
+    align-items: center;
+    padding: 0 6%;
+    z-index: 100;
+    background: rgba(247, 241, 232, 0.82);
+    backdrop-filter: blur(14px);
+}
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 25px;
+    font-weight: 600;
+    color: var(--brown);
+    letter-spacing: -0.5px;
+}
+
+ .logo span {
+    font-style: italic;
+}
+
+.art-wall-nav {
+    margin-left: auto;
+    color: var(--brown);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 800;
+    padding: 10px 16px;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    background: var(--white);
+    transition: 0.2s ease;
+}
+
+.art-wall-nav:hover {
+    background: var(--brown);
+    color: white;
+}
+
+/* HERO */
+
+.hero {
+    min-height: 100vh;
+    padding: 120px 8% 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+.hero-content {
+    max-width: 900px;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.eyebrow {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    color: var(--soft-brown);
+}
+
+.hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(70px, 11vw, 150px);
+    line-height: 0.88;
+    letter-spacing: -6px;
+    color: var(--brown);
+    margin-bottom: 35px;
+}
+
+.hero h1 em {
+    font-weight: 500;
+}
+
+.hero-text {
+    max-width: 570px;
+    font-size: 19px;
+    line-height: 1.7;
+    color: var(--soft-brown);
+    margin-bottom: 35px;
+}
+
+.hero-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 24px;
+    border: none;
+    border-radius: 100px;
+    background: var(--brown);
+    color: var(--white);
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.hero-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(91, 70, 54, 0.2);
+}
+
+/* HERO BLOBS */
+
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(2px);
+    opacity: 0.75;
+    transition: transform 0.2s ease-out;
+}
+
+/* LEFT SIDE */
+
+.blob-left-1 {
+    width: 220px;
+    height: 220px;
+    left: 4%;
+    top: 15%;
+    background: #D7C7DD;
+}
+
+.blob-left-2 {
+    width: 150px;
+    height: 150px;
+    left: 16%;
+    bottom: 16%;
+    background: #C9D6C3;
+}
+
+.blob-left-3 {
+    width: 95px;
+    height: 95px;
+    left: 3%;
+    bottom: 29%;
+    background: #E9C6B4;
+}
+
+/* RIGHT SIDE */
+
+.blob-right-1 {
+    width: 270px;
+    height: 270px;
+    right: 5%;
+    top: 15%;
+    background: #E9C6B4;
+}
+
+.blob-right-2 {
+    width: 185px;
+    height: 185px;
+    right: 19%;
+    bottom: 12%;
+    background: #C9D6C3;
+}
+
+.blob-right-3 {
+    width: 105px;
+    height: 105px;
+    right: 3%;
+    bottom: 31%;
+    background: #D7C7DD;
+}
+
+/* SECTIONS */
+
+.section {
+    padding: 110px 8%;
+}
+
+.section-heading {
+    max-width: 750px;
+    margin-bottom: 55px;
+}
+
+.section-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 800;
+    color: var(--soft-brown);
+    margin-bottom: 14px;
+}
+
+.section-heading h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(45px, 6vw, 75px);
+    line-height: 1;
+    letter-spacing: -3px;
+    color: var(--brown);
+    margin-bottom: 20px;
+}
+
+.section-heading p {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--soft-brown);
+}
+
+/* COLOR LAB */
+
+.lab {
+    background: var(--white);
+}
+
+.color-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 14px;
+}
+
+.color-card {
+    height: 190px;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    align-items: flex-end;
+    padding: 20px;
+    text-align: left;
+}
+
+.color-card:hover {
+    transform: translateY(-8px) rotate(-1deg);
+    box-shadow: 0 18px 35px rgba(91, 70, 54, 0.14);
+}
+
+/* ALL COLOR LABELS ARE WHITE */
+
+.color-card span {
+    font-size: 17px;
+    font-weight: 800;
+    position: relative;
+    z-index: 2;
+    color: white !important;
+}
+
+.red {
+    background: #D9534F;
+}
+
+.orange {
+    background: #E8914D;
+}
+
+.yellow {
+    background: #F3D56B;
+}
+
+.green {
+    background: #9BB59B;
+}
+
+.blue {
+    background: #91B7CE;
+}
+
+.purple {
+    background: #B59AC5;
+}
+
+.grey {
+    background: #B8B4AF;
+}
+
+.brown {
+    background: #765440;
+}
+
+.black {
+    background: #302B28;
+}
+
+.color-result {
+    margin-top: 35px;
+    padding: 35px;
+    border-radius: 28px;
+    background: var(--cream);
+    display: none;
+    animation: fadeUp 0.5s ease;
+}
+
+.color-result.active {
+    display: block;
+}
+
+.color-result h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 35px;
+    margin-bottom: 10px;
+}
+
+.color-result p {
+    color: var(--soft-brown);
+    line-height: 1.7;
+    max-width: 750px;
+}
+
+/* REACTIONS */
+
+.reaction-box {
+    margin-top: 25px;
+}
+
+.reaction-box p {
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.reactions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.reaction {
+    border: 1px solid var(--border);
+    background: var(--white);
+    color: var(--brown);
+    border-radius: 100px;
+    padding: 11px 18px;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.reaction:hover {
+    background: var(--brown);
+    color: white;
+}
+
+/* PSYCHOLOGY */
+
+.psychology-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.psych-card {
+    padding: 30px;
+    border-radius: 28px;
+    background: var(--white);
+    border: 1px solid rgba(91, 70, 54, 0.08);
+    transition: 0.3s ease;
+}
+
+.psych-card:hover {
+    transform: translateY(-5px);
+}
+
+.psych-top {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.dot {
+    width: 43px;
+    height: 43px;
+    border-radius: 50%;
+}
+
+.psych-card h3 {
+    font-size: 23px;
+    color: white;
+    padding: 7px 15px;
+    border-radius: 100px;
+    display: inline-block;
+}
+
+/* PSYCHOLOGY LABEL COLORS */
+
+.psych-card:nth-child(1) h3 {
+    background: #D9534F;
+}
+
+.psych-card:nth-child(2) h3 {
+    background: #E8914D;
+}
+
+.psych-card:nth-child(3) h3 {
+    background: #D2B83F;
+}
+
+.psych-card:nth-child(4) h3 {
+    background: #6F956F;
+}
+
+.psych-card:nth-child(5) h3 {
+    background: #638FA9;
+}
+
+.psych-card:nth-child(6) h3 {
+    background: #80638F;
+}
+
+.psych-card:nth-child(7) h3 {
+    background: #77736F;
+}
+
+.psych-card:nth-child(8) h3 {
+    background: #765440;
+}
+
+.psych-card:nth-child(9) h3 {
+    background: #302B28;
+}
+
+.psych-card p {
+    color: var(--soft-brown);
+    line-height: 1.7;
+}
+
+.psych-card small {
+    display: block;
+    margin-top: 15px;
+    color: #806C5D;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* MYTH */
+
+.myth-section {
+    background: var(--brown);
+    color: white;
+}
+
+.myth-section .section-label,
+.myth-section .section-heading p {
+    color: #E5D6C9;
+}
+
+.myth-section .section-heading h2 {
+    color: white;
+}
+
+.myth-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.myth-card {
+    padding: 38px;
+    border-radius: 28px;
+    background: rgba(255,255,255,0.09);
+    border: 1px solid rgba(255,255,255,0.14);
+}
+
+.myth-card .tag {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 800;
+    margin-bottom: 18px;
+    color: #E6C7B0;
+}
+
+.myth-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+.myth-card p {
+    color: #E5D6C9;
+    line-height: 1.7;
+}
+
+
+
+
+/* QUIZ */
+
+.quiz-section {
+    background: #EFE7DD;
+}
+
+.quiz-container {
+    max-width: 850px;
+}
+
+.quiz-progress {
+    height: 7px;
+    background: #D9CBBE;
+    border-radius: 100px;
+    overflow: hidden;
+    margin-bottom: 35px;
+}
+
+.quiz-progress-bar {
+    height: 100%;
+    width: 0%;
+    background: var(--brown);
+    transition: width 0.4s ease;
+}
+
+.question-number {
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--soft-brown);
+    margin-bottom: 14px;
+}
+
+.question {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 5vw, 52px);
+    line-height: 1.05;
+    letter-spacing: -2px;
+    margin-bottom: 30px;
+}
+
+.answers {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 13px;
+}
+
+.answer {
+    padding: 20px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--white);
+    color: var(--brown);
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 700;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.answer:hover {
+    transform: translateY(-4px);
+    border-color: var(--brown);
+}
+
+.answer-color {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.quiz-result {
+    display: none;
+    text-align: center;
+    padding: 55px 30px;
+}
+
+.quiz-result.active {
+    display: block;
+    animation: fadeUp 0.6s ease;
+}
+
+.result-hue {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    margin: 0 auto 25px;
+    background: conic-gradient(
+        #91B7CE,
+        #B59AC5,
+        #D9534F,
+        #F3D56B,
+        #9BB59B,
+        #91B7CE
+    );
+    box-shadow: 0 15px 35px rgba(91,70,54,0.15);
+}
+
+.quiz-result h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 55px;
+    line-height: 1;
+    margin-bottom: 18px;
+}
+
+.quiz-result p {
+    max-width: 600px;
+    margin: auto;
+    color: var(--soft-brown);
+    line-height: 1.7;
+}
+
+.result-note {
+    margin-top: 22px !important;
+    font-size: 13px;
+    font-style: italic;
+}
+
+.restart {
+    margin-top: 30px;
+    border: none;
+    background: var(--brown);
+    color: white;
+    padding: 14px 23px;
+    border-radius: 100px;
+    font-family: inherit;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* FOOTER */
+
+footer {
+    padding: 50px 8%;
+    background: var(--cream);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+footer p {
+    color: var(--soft-brown);
+    font-size: 13px;
+}
+
+.footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+}
+
+/* ANIMATION */
+
+@keyframes fadeUp {
+
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+.owner-mode-button {
+    margin-top: 18px;
+    border: 1px solid var(--border);
+    background: var(--white);
+    color: var(--brown);
+    padding: 10px 16px;
+    border-radius: 100px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.owner-access-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.owner-access-note {
+    font-size: 12px;
+    color: var(--soft-brown);
+    line-height: 1.4;
+}
+
+.owner-mode-button.active {
+    background: var(--brown);
+    color: white;
+}
+
+.owner-delete-note {
+    color: var(--soft-brown);
+    font-size: 13px;
+    margin-top: 8px;
+}
+
+.owner-access-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(55, 39, 28, 0.45);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 20px;
+}
+
+.owner-access-overlay.active {
+    display: flex;
+}
+
+.owner-access-box {
+    width: min(420px, 100%);
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 28px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(55, 39, 28, 0.18);
+}
+
+.owner-password-input {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 10px 0 4px;
+    padding: 13px 15px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--cream);
+    color: var(--brown);
+    font: inherit;
+    outline: none;
+}
+
+.owner-password-input:focus {
+    border-color: var(--brown);
+}
+
+.owner-password-error {
+    min-height: 18px;
+    margin: 4px 0 10px;
+    color: #a33a3a;
+    font-size: 13px;
+}
+
+
+.site-copyright {
+    margin-top: 8px;
+    font-size: 12px;
+    color: var(--soft-brown);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+
+    .color-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .psychology-grid,
+    .myth-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        padding-top: 130px;
+    }
+
+    .blob-left-1 {
+        left: -100px;
+    }
+
+    .blob-right-1 {
+        right: -100px;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    nav {
+        height: 70px;
+        padding: 0 5%;
+    }
+
+    .logo {
+        font-size: 21px;
+    }
+
+    .hero {
+        padding: 120px 6% 70px;
+    }
+
+    .hero h1 {
+        letter-spacing: -3px;
+    }
+
+    .section {
+        padding: 80px 6%;
+    }
+
+    .color-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .color-card {
+        height: 145px;
+        padding: 15px;
+    }
+
+    .answers {
+        grid-template-columns: 1fr;
+    }
+
+    footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+}
+
+
+
+/* COLOR SPIN */
+
+.color-spin-section {
+    background: var(--cream);
+    text-align: center;
+}
+
+.spin-wrap {
+    max-width: 950px;
+    margin: 0 auto;
+}
+
+.wheel-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+}
+
+.color-wheel {
+    width: min(390px, 78vw);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    position: relative;
+    border: 12px solid var(--white);
+    box-shadow: 0 20px 45px rgba(91,70,54,0.16);
+    overflow: hidden;
+    transition: transform 4s cubic-bezier(0.15, 0.75, 0.15, 1);
+    background: conic-gradient(
+        #D9534F 0deg 40deg,
+        #E8914D 40deg 80deg,
+        #F3D56B 80deg 120deg,
+        #9BB59B 120deg 160deg,
+        #91B7CE 160deg 200deg,
+        #B59AC5 200deg 240deg,
+        #B8B4AF 240deg 280deg,
+        #765440 280deg 320deg,
+        #302B28 320deg 360deg
+    );
+}
+
+.wheel-label {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 80px;
+    height: 80px;
+    margin: -40px;
+    transform-origin: 40px 40px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    pointer-events: none;
+    font-size: 12px;
+    font-weight: 800;
+    color: white;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.28);
+    padding-top: 5px;
+}
+
+.wheel-label span {
+    transform: rotate(var(--label-rotation));
+}
+
+.wheel-label:nth-child(1) { transform: rotate(20deg) translateY(-125px); }
+.wheel-label:nth-child(2) { transform: rotate(60deg) translateY(-125px); }
+.wheel-label:nth-child(3) { transform: rotate(100deg) translateY(-125px); }
+.wheel-label:nth-child(4) { transform: rotate(140deg) translateY(-125px); }
+.wheel-label:nth-child(5) { transform: rotate(180deg) translateY(-125px); }
+.wheel-label:nth-child(6) { transform: rotate(220deg) translateY(-125px); }
+.wheel-label:nth-child(7) { transform: rotate(260deg) translateY(-125px); }
+.wheel-label:nth-child(8) { transform: rotate(300deg) translateY(-125px); }
+.wheel-label:nth-child(9) { transform: rotate(340deg) translateY(-125px); }
+
+.wheel-center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 82px;
+    height: 82px;
+    border-radius: 50%;
+    background: var(--white);
+    border: 5px solid rgba(91,70,54,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--brown);
+    z-index: 3;
+}
+
+.wheel-pointer {
+    width: 0;
+    height: 0;
+    border-left: 14px solid transparent;
+    border-right: 14px solid transparent;
+    border-top: 28px solid var(--brown);
+    position: relative;
+    z-index: 5;
+    margin-bottom: -8px;
+    filter: drop-shadow(0 3px 4px rgba(91,70,54,0.18));
+}
+
+.spin-button {
+    border: none;
+    background: var(--brown);
+    color: white;
+    padding: 15px 27px;
+    border-radius: 100px;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.spin-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(91,70,54,0.18);
+}
+
+.spin-button:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.spin-result {
+    margin-top: 10px;
+    display: none;
+}
+
+.spin-result.active {
+    display: block;
+    animation: fadeUp 0.5s ease;
+}
+
+.spin-result h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    margin-bottom: 8px;
+}
+
+.spin-result p {
+    color: var(--soft-brown);
+    margin-bottom: 18px;
+}
+
+.draw-button {
+    border: 1px solid var(--border);
+    background: var(--white);
+    color: var(--brown);
+    padding: 12px 21px;
+    border-radius: 100px;
+    font-family: inherit;
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.draw-button:hover {
+    background: var(--brown);
+    color: white;
+}
+
+/* DRAWING COMPLETE POPUP */
+
+.drawing-complete-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(48,43,40,0.48);
+    backdrop-filter: blur(8px);
+    z-index: 500;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+}
+
+.drawing-complete-overlay.active {
+    display: flex;
+    animation: fadeUp 0.25s ease;
+}
+
+.drawing-complete-card {
+    width: min(560px, 92vw);
+    background: var(--white);
+    border-radius: 30px;
+    padding: 42px 34px;
+    text-align: center;
+    box-shadow: 0 30px 80px rgba(48,43,40,0.25);
+}
+
+.drawing-complete-card .complete-emoji {
+    font-size: 52px;
+    margin-bottom: 10px;
+}
+
+.drawing-complete-card h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    color: var(--brown);
+    margin-bottom: 12px;
+}
+
+.drawing-complete-card p {
+    color: var(--soft-brown);
+    line-height: 1.7;
+    margin: 0 auto 24px;
+    max-width: 440px;
+}
+
+.drawing-complete-card button {
+    border: none;
+    background: var(--brown);
+    color: white;
+    padding: 13px 25px;
+    border-radius: 100px;
+    font-family: inherit;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+/* DRAWING POPUP */
+
+.drawing-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(48,43,40,0.48);
+    backdrop-filter: blur(8px);
+    z-index: 300;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+}
+
+.drawing-overlay.active {
+    display: flex;
+    animation: fadeUp 0.25s ease;
+}
+
+.drawing-modal {
+    width: min(1120px, 96vw);
+    max-height: 94vh;
+    overflow-y: auto;
+    background: var(--cream);
+    border-radius: 30px;
+    padding: 30px;
+    box-shadow: 0 30px 80px rgba(48,43,40,0.25);
+    position: relative;
+}
+
+.drawing-close {
+    position: absolute;
+    right: 22px;
+    top: 18px;
+    width: 42px;
+    height: 42px;
+    border: none;
+    border-radius: 50%;
+    background: var(--white);
+    color: var(--brown);
+    font-size: 22px;
+    cursor: pointer;
+    z-index: 5;
+}
+
+.drawing-heading {
+    text-align: center;
+    margin-bottom: 25px;
+    padding-right: 35px;
+}
+
+.drawing-heading .section-label {
+    margin-bottom: 8px;
+}
+
+.drawing-heading h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(34px, 5vw, 55px);
+    line-height: 1;
+    margin-bottom: 10px;
+}
+
+.drawing-heading p {
+    color: var(--soft-brown);
+}
+
+.drawing-layout {
+    display: grid;
+    grid-template-columns: 215px minmax(0, 1fr);
+    gap: 20px;
+    align-items: start;
+}
+
+.drawing-side {
+    background: var(--white);
+    border-radius: 23px;
+    padding: 18px;
+}
+
+.drawing-side-title {
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--soft-brown);
+    margin-bottom: 12px;
+}
+
+.drawing-options {
+    display: grid;
+    gap: 9px;
+}
+
+.drawing-option {
+    width: 100%;
+    border: 1px solid var(--border);
+    background: var(--cream);
+    color: var(--brown);
+    border-radius: 15px;
+    padding: 11px 12px;
+    text-align: left;
+    font-family: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.drawing-option:hover,
+.drawing-option.active {
+    background: var(--brown);
+    color: white;
+    transform: translateX(3px);
+}
+
+.drawing-main {
+    min-width: 0;
+}
+
+.canvas-card {
+    background: var(--white);
+    border-radius: 24px;
+    padding: 18px;
+    box-shadow: 0 10px 30px rgba(91,70,54,0.08);
+}
+
+.canvas-wrap {
+    width: 100%;
+    height: min(58vh, 520px);
+    min-height: 360px;
+    background: #fff;
+    border-radius: 17px;
+    border: 1px solid #E3DED7;
+    position: relative;
+    overflow: hidden;
+    touch-action: none;
+}
+
+
+#drawingCanvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    cursor: default;
+    touch-action: none;
+    z-index: 2;
+}
+
+.canvas-tools {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 9px;
+    margin-top: 14px;
+}
+
+.tool-button {
+    border: 1px solid var(--border);
+    background: var(--cream);
+    color: var(--brown);
+    border-radius: 13px;
+    padding: 10px 13px;
+    font-family: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.tool-button:hover,
+.tool-button.active {
+    background: var(--brown);
+    color: white;
+}
+
+.brush-size-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+#brushSize {
+    accent-color: var(--brown);
+    width: 100px;
+}
+
+.palette-box {
+    margin-top: 15px;
+    background: var(--cream);
+    border-radius: 18px;
+    padding: 15px;
+}
+
+.palette-title {
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--soft-brown);
+    margin-bottom: 10px;
+}
+
+.palette-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+}
+
+.palette-label {
+    width: 100%;
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--soft-brown);
+    margin-top: 2px;
+}
+
+.palette-color {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 3px solid white;
+    box-shadow: 0 0 0 1px var(--border);
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.palette-color:hover,
+.palette-color.active {
+    transform: scale(1.14);
+    box-shadow: 0 0 0 2px var(--brown);
+}
+
+.drawing-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.change-drawing {
+    border: none;
+    background: transparent;
+    color: var(--soft-brown);
+    font-family: inherit;
+    font-weight: 800;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.change-drawing:hover {
+    color: var(--brown);
+    text-decoration: underline;
+}
+
+/* PUBLISHING + ART WALL */
+
+.publish-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(48,43,40,0.48);
+    backdrop-filter: blur(8px);
+    z-index: 600;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+}
+
+.publish-overlay.active {
+    display: flex;
+    animation: fadeUp 0.25s ease;
+}
+
+.publish-card {
+    width: min(820px, 94vw);
+    max-height: 92vh;
+    overflow-y: auto;
+    background: var(--cream);
+    border-radius: 30px;
+    padding: 32px;
+    box-shadow: 0 30px 80px rgba(48,43,40,0.25);
+}
+
+.publish-card h2,
+.art-wall-heading h2 {
+    font-family: 'Playfair Display', serif;
+}
+
+.publish-card h2 {
+    font-size: clamp(34px, 5vw, 52px);
+    line-height: 1;
+    margin-bottom: 10px;
+}
+
+.publish-card > p {
+    color: var(--soft-brown);
+    margin-bottom: 22px;
+}
+
+.publish-preview-wrap {
+    background: var(--white);
+    border-radius: 22px;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border);
+}
+
+#publishPreview {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 48vh;
+    object-fit: contain;
+    background: #fff;
+    border-radius: 14px;
+}
+
+.publish-field {
+    margin-bottom: 18px;
+}
+
+.publish-field label {
+    display: block;
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--soft-brown);
+    margin-bottom: 9px;
+}
+
+#publishCaption {
+    width: 100%;
+    min-height: 95px;
+    resize: vertical;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: var(--white);
+    color: var(--brown);
+    padding: 13px 14px;
+    font: inherit;
+    outline: none;
+}
+
+#publishCaption:focus {
+    border-color: var(--brown);
+}
+
+.star-rating {
+    display: flex;
+    gap: 5px;
+}
+
+.rating-star {
+    border: none;
+    background: transparent;
+    color: #CFC5BC;
+    font-size: 32px;
+    line-height: 1;
+    padding: 3px;
+    cursor: pointer;
+    transition: 0.15s ease;
+}
+
+.rating-star:hover,
+.rating-star.active {
+    color: #E6A7B8;
+    transform: translateY(-2px);
+}
+
+.delete-confirm-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(64, 45, 35, 0.28);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 20px;
+}
+
+.delete-confirm-overlay.active {
+    display: flex;
+}
+
+.delete-confirm-box {
+    width: min(460px, 100%);
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 28px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 20px 70px rgba(64,45,35,0.18);
+}
+
+.delete-confirm-emoji {
+    font-size: 34px;
+    margin-bottom: 8px;
+}
+
+.delete-confirm-box h3 {
+    margin: 0 0 8px;
+}
+
+.delete-confirm-box p {
+    margin: 0 0 22px;
+    color: var(--soft-brown);
+}
+
+.delete-confirm-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.delete-confirm-actions button {
+    border: 1px solid var(--border);
+    background: var(--white);
+    color: var(--brown);
+    padding: 11px 17px;
+    border-radius: 100px;
+    font-family: inherit;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.delete-confirm-actions .delete-yes-button {
+    background: var(--brown);
+    color: white;
+    border-color: var(--brown);
+}
+
+.publish-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 22px;
+}
+
+.publish-actions button,
+.artwork-actions button {
+    border: 1px solid var(--border);
+    background: var(--white);
+    color: var(--brown);
+    padding: 11px 17px;
+    border-radius: 100px;
+    font-family: inherit;
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.publish-actions .publish-primary,
+.artwork-actions .edit-artwork {
+    background: var(--brown);
+    color: white;
+    border-color: var(--brown);
+}
+
+.publish-actions button:hover,
+.artwork-actions button:hover {
+    transform: translateY(-2px);
+}
+
+.art-wall-section {
+    background: var(--white);
+    min-height: 70vh;
+}
+
+.art-wall-heading {
+    max-width: 800px;
+    margin-bottom: 35px;
+}
+
+.art-wall-heading h2 {
+    font-size: clamp(45px, 6vw, 75px);
+    line-height: 1;
+    letter-spacing: -3px;
+    color: var(--brown);
+    margin-bottom: 16px;
+}
+
+.art-wall-heading p {
+    color: var(--soft-brown);
+    line-height: 1.7;
+    font-size: 17px;
+}
+
+.art-wall-empty {
+    text-align: center;
+    padding: 80px 20px;
+    border: 1px dashed var(--border);
+    border-radius: 28px;
+    background: var(--cream);
+}
+
+.art-wall-empty .empty-emoji {
+    font-size: 48px;
+    margin-bottom: 12px;
+}
+
+.art-wall-empty h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    margin-bottom: 8px;
+}
+
+.art-wall-empty p {
+    color: var(--soft-brown);
+}
+
+.art-wall-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.artwork-card {
+    background: var(--cream);
+    border: 1px solid rgba(91,70,54,0.08);
+    border-radius: 25px;
+    padding: 14px;
+    overflow: hidden;
+}
+
+.artwork-image-wrap {
+    background: #fff;
+    border-radius: 17px;
+    padding: 8px;
+    border: 1px solid var(--border);
+}
+
+.artwork-image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: contain;
+    background: #fff;
+    border-radius: 11px;
+}
+
+.artwork-meta {
+    padding: 15px 4px 4px;
+}
+
+.artwork-hue {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--soft-brown);
+    margin-bottom: 8px;
+}
+
+.artwork-hue-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 1px solid rgba(91,70,54,0.15);
+}
+
+.artwork-caption {
+    color: var(--brown);
+    line-height: 1.55;
+    margin-bottom: 9px;
+    min-height: 24px;
+}
+
+.artwork-stars {
+    color: #E6A7B8;
+    letter-spacing: 2px;
+    margin-bottom: 13px;
+}
+
+.artwork-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.artwork-actions button {
+    padding: 8px 13px;
+    font-size: 13px;
+}
+
+.publish-limit-note {
+    margin-top: 12px;
+    color: var(--soft-brown);
+    font-size: 13px;
+}
+
+@media (max-width: 900px) {
+    .art-wall-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .art-wall-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .art-wall-nav {
+        padding: 8px 12px;
+    }
+
+    .publish-card {
+        padding: 22px;
+    }
+
+    .publish-actions {
+        flex-direction: column-reverse;
+    }
+
+    .publish-actions button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 800px) {
+    .drawing-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .drawing-options {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .drawing-side {
+        order: 2;
+    }
+
+    .drawing-main {
+        order: 1;
+    }
+
+    .brush-size-wrap {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .drawing-modal {
+        padding: 20px;
+        border-radius: 24px;
+    }
+
+    .canvas-wrap {
+        min-height: 300px;
+        height: 52vh;
+    }
+
+    .drawing-options {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">What's <span>your hue?</span></div>
+    <a class="art-wall-nav" href="#artWall">Art Wall</a>
+</nav>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <!-- LEFT 3 BLOBS -->
+
+    <div class="blob blob-left-1"></div>
+    <div class="blob blob-left-2"></div>
+    <div class="blob blob-left-3"></div>
+
+    <!-- RIGHT 3 BLOBS -->
+
+    <div class="blob blob-right-1"></div>
+    <div class="blob blob-right-2"></div>
+    <div class="blob blob-right-3"></div>
+
+
+    <div class="hero-content">
+
+        <div class="eyebrow">Color × Psychology</div>
+
+        <h1>
+            What’s<br>
+            <em>your hue?</em>
+        </h1>
+
+        <p class="hero-text">
+            Colors can change the way a space feels, grab your attention,
+            bring back memories, or simply make you feel... something.
+            Let's look a little closer.
+        </p>
+
+        <button
+            class="hero-btn"
+            onclick="document.getElementById('lab').scrollIntoView()"
+        >
+            Let's explore a color →
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- COLOR LAB -->
+
+<section class="section lab" id="lab">
+
+    <div class="section-heading">
+
+        <div class="section-label">01 — The Color Lab</div>
+
+        <h2>
+            Pick a color.<br>
+            See what happens.
+        </h2>
+
+        <p>
+            There isn't one universal meaning for a color.
+            Pick one that catches your attention and explore some
+            of the feelings and associations people commonly connect with it.
+        </p>
+
+    </div>
+
+
+    <div class="color-grid">
+
+        <button class="color-card red" onclick="showColor('red')">
+            <span>Red</span>
+        </button>
+
+        <button class="color-card orange" onclick="showColor('orange')">
+            <span>Orange</span>
+        </button>
+
+        <button class="color-card yellow" onclick="showColor('yellow')">
+            <span>Yellow</span>
+        </button>
+
+        <button class="color-card green" onclick="showColor('green')">
+            <span>Green</span>
+        </button>
+
+        <button class="color-card blue" onclick="showColor('blue')">
+            <span>Blue</span>
+        </button>
+
+        <button class="color-card purple" onclick="showColor('purple')">
+            <span>Purple</span>
+        </button>
+
+        <button class="color-card grey" onclick="showColor('grey')">
+            <span>Grey</span>
+        </button>
+
+        <button class="color-card brown" onclick="showColor('brown')">
+            <span>Dark Brown</span>
+        </button>
+
+        <button class="color-card black" onclick="showColor('black')">
+            <span>Black</span>
+        </button>
+
+    </div>
+
+
+    <div class="color-result" id="colorResult">
+
+        <h3 id="colorTitle"></h3>
+
+        <p id="colorDescription"></p>
+
+        <div class="reaction-box">
+
+            <p>But what does it feel like to you?</p>
+
+            <div class="reactions">
+
+                <button class="reaction" onclick="showReaction('calm')">
+                    Calm
+                </button>
+
+                <button class="reaction" onclick="showReaction('happy')">
+                    Happy
+                </button>
+
+                <button class="reaction" onclick="showReaction('energetic')">
+                    Energetic
+                </button>
+
+                <button class="reaction" onclick="showReaction('safe')">
+                    Safe
+                </button>
+
+                <button class="reaction" onclick="showReaction('tense')">
+                    Tense
+                </button>
+
+                <button class="reaction" onclick="showReaction('nothing')">
+                    Nothing
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PSYCHOLOGY -->
+
+<section class="section" id="psychology">
+
+    <div class="section-heading">
+
+        <div class="section-label">02 — The Psychology</div>
+
+        <h2>
+            Why do colors<br>
+            feel different?
+        </h2>
+
+        <p>
+            Color perception isn't just about the color itself.
+            Your brain also responds to brightness, saturation,
+            context, memories, culture and what is happening around you.
+        </p>
+
+    </div>
+
+
+    <div class="psychology-grid">
+
+        <div class="psych-card">
+
+            <div class="psych-top">
+                <div class="dot" style="background:#D9534F"></div>
+                <h3>Red</h3>
+            </div>
+
+            <p>
+                Often associated with intensity, urgency, excitement
+                and attention. It can feel powerful or stimulating.
+            </p>
+
+            <small>
+                Context matters — the same red can feel romantic,
+                alarming, energetic or comforting.
+            </small>
+
+        </div>
+
+
+        <div class="psych-card">
+
+            <div class="psych-top">
+                <div class="dot" style="background:#E8914D"></div>
+                <h3>Orange</h3>
+            </div>
+
+            <p>
+                Often connected with warmth, energy, playfulness
+                and social environments.
+            </p>
+
+            <small>
+                Bright orange may feel energetic while a muted orange
+                can feel much softer.
+            </small>
+
+        </div>
+
+
+        <div class="psych-card">
+
+            <div class="psych-top">
+                <div class="dot" style="background:#F3D56B"></div>
+                <h3>Yellow</h3>
+            </div>
+
+            <p>
+                Frequently associated with brightness, optimism,
+                attention and mental stimulation.
+            </p>
+
+            <small>
+                Very bright yellow can also become visually intense.
+            </small>
+
+        </div>
+
+
+        <div class="psych-card">
+
+            <div class="psych-top">
+                <div class="dot" style="background:#9BB59B"></div>
+                <h3>Green</h3>
+            </div>
+
+            <p>
+                Commonly associated with nature, balance, freshness
+                and restoration.
+            </p>
+
+            <small>
+                Your personal experiences with nature can influence
+                how green feels to you.
+            </small>
+
+        </div>
+
+
+        <div class="psych-card">
+
+            <div class="psych-top">
+                <div class="dot" style="background:#91B7CE"></div>
+                <h3>Blue</h3>
+            </div>
+
+            <p>
+                Often linked with calmness, spaciousness, trust
+                and coolness.
+            </p>
+
+            <small>
+                Different shades of blue can create very different impressions.
+            </small>
+
+        </div>
+
+
+        <div class="psych-card">
+
+            <div class="psych-top">
+                <div class="dot" style="background:#B59AC5"></div>
+                <h3>Purple</h3>
+            </div>
+
+            <p>
+                Can evoke creativity, mystery, imagination and
+                unusual or luxurious associations.
+            </p>
+
+            <small>
+                Cultural associations with purple vary considerably.
+            </small>
+
+        </div>
+
+
+        <div class="psych-card">
+
+            <div class="psych-top">
+                <div class="dot" style="background:#B8B4AF"></div>
+                <h3>Grey</h3>
+            </div>
+
+            <p>
+                Can feel neutral, quiet, serious, balanced or distant
+                depending on its surroundings.
+            </p>
+
+            <small>
+                Grey is especially sensitive to the colors around it.
+            </small>
+
+        </div>
+
+
+        <div class="psych-card">
+
+            <div class="psych-top">
+                <div class="dot" style="background:#765440"></div>
+                <h3>Dark Brown</h3>
+            </div>
+
+            <p>
+                Often connected with earthiness, stability, warmth,
+                reliability and natural materials.
+            </p>
+
+            <small>
+                Texture and context can strongly affect how brown is perceived.
+            </small>
+
+        </div>
+
+
+        <div class="psych-card">
+
+            <div class="psych-top">
+                <div class="dot" style="background:#302B28"></div>
+                <h3>Black</h3>
+            </div>
+
+            <p>
+                Can communicate contrast, seriousness, sophistication,
+                mystery or visual weight.
+            </p>
+
+            <small>
+                Its meaning changes dramatically depending on context.
+            </small>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- MYTH VS REALITY -->
+
+<section class="section myth-section">
+
+    <div class="section-heading">
+
+        <div class="section-label">03 — Myth vs Reality</div>
+
+        <h2>
+            Your favorite color<br>
+            isn't your personality.
+        </h2>
+
+        <p>
+            Color psychology is much more complicated — and way more
+            interesting — than assigning one personality to one color.
+        </p>
+
+    </div>
+
+
+    <div class="myth-grid">
+
+        <div class="myth-card">
+
+            <div class="tag">Myth</div>
+
+            <h3>
+                “You like blue, so you're calm.”
+            </h3>
+
+            <p>
+                Not necessarily. You might like blue because it reminds
+                you of the ocean, your bedroom, a memory, or simply because
+                you like how it looks.
+            </p>
+
+        </div>
+
+
+        <div class="myth-card">
+
+            <div class="tag">Reality</div>
+
+            <h3>
+                Color associations are personal.
+            </h3>
+
+            <p>
+                Psychology can identify patterns in how people respond
+                to colors, but those patterns aren't rules that predict
+                who someone is.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+
+
+<!-- QUIZ -->
+
+<section class="section quiz-section" id="quiz">
+
+    <div class="section-heading">
+
+        <div class="section-label">04 — Test Your Perception</div>
+
+        <h2>
+            What color does<br>
+            it feel like?
+        </h2>
+
+        <p>
+            Forget what you're “supposed” to feel.
+            Read each question and answer with the color that
+            feels like the best fit.
+        </p>
+
+    </div>
+
+
+    <div class="quiz-container">
+
+        <div class="quiz-progress">
+            <div class="quiz-progress-bar" id="progressBar"></div>
+        </div>
+
+        <div id="quizContent">
+
+            <div class="question-number" id="questionNumber">
+                Question 1 of 6
+            </div>
+
+            <div class="question" id="questionText"></div>
+
+            <div class="answers" id="answers"></div>
+
+        </div>
+
+
+        <div class="quiz-result" id="quizResult">
+
+            <div class="result-hue"></div>
+
+            <h2 id="resultTitle"></h2>
+
+            <p id="resultDescription"></p>
+
+            <p class="result-note">
+                This result is just for fun — it is not a guaranteed
+                description of your personality, preferences, or who you are.
+                It simply reflects the color associations you chose in this quiz.
+            </p>
+
+            <button class="restart" onclick="restartQuiz()">
+                Try again
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- COLOR SPIN -->
+
+<section class="section color-spin-section" id="colorSpin">
+
+    <div class="section-heading">
+
+        <div class="section-label">05 — Color Spin</div>
+
+        <h2>
+            Spin a color.<br>
+            Make something.
+        </h2>
+
+        <p>
+            Let pure luck choose your main color, then pick a little drawing
+            that was made for it and make it your own.
+        </p>
+
+    </div>
+
+    <div class="spin-wrap">
+
+        <div class="wheel-area">
+
+            <div class="wheel-pointer"></div>
+
+            <div class="color-wheel" id="colorWheel">
+                <div class="wheel-label"><span>Red</span></div>
+                <div class="wheel-label"><span>Orange</span></div>
+                <div class="wheel-label"><span>Yellow</span></div>
+                <div class="wheel-label"><span>Green</span></div>
+                <div class="wheel-label"><span>Blue</span></div>
+                <div class="wheel-label"><span>Purple</span></div>
+                <div class="wheel-label"><span>Grey</span></div>
+                <div class="wheel-label"><span>Brown</span></div>
+                <div class="wheel-label"><span>Black</span></div>
+                <div class="wheel-center">SPIN</div>
+            </div>
+
+            <button class="spin-button" id="spinButton" onclick="spinColorWheel()">
+                Spin the wheel 🎡
+            </button>
+
+            <div class="spin-result" id="spinResult">
+                <h3 id="spinColorTitle"></h3>
+                <p id="spinColorText"></p>
+                <button class="draw-button" onclick="openDrawingPicker()">
+                    Start drawing →
+                </button>
+                <button class="draw-button" onclick="spinColorWheel()">
+                    ↻ Spin again
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- DRAWING POPUP -->
+
+<div class="drawing-overlay" id="drawingOverlay">
+
+    <div class="drawing-modal">
+
+        <button class="drawing-close" onclick="closeDrawingModal()">×</button>
+
+        <div class="drawing-heading">
+            <div class="section-label" id="drawingColorLabel">YOUR HUE</div>
+            <h2 id="drawingHeading">START DRAWING!</h2>
+            <p id="drawingSubheading">Draw anything you want with the color you spun.</p>
+        </div>
+
+        <div class="drawing-layout">
+
+            <aside class="drawing-side">
+                <div class="drawing-side-title">Start drawing ✨</div>
+                <div class="free-draw-info">
+                    <p>Your spun color is your <strong>PRIMARY COLOR</strong>.</p>
+                    <p>That is the <strong>ONLY COLOR</strong> you can draw with.</p>
+                    <p>There is no drawing to follow — make whatever you want.</p>
+                </div>
+            </aside>
+
+            <div class="drawing-main">
+
+                <div class="canvas-card">
+
+                    <div class="canvas-wrap" id="canvasWrap">
+                        <canvas id="drawingCanvas"></canvas>
+                    </div>
+
+                    <div class="canvas-tools">
+                        <button class="tool-button brush-tool active" id="paintTool" data-tool="paint" onclick="setDrawingTool('paint')">🖌 Paint</button>
+                        <button class="tool-button brush-tool" id="pencilTool" data-tool="pencil" onclick="setDrawingTool('pencil')">✏️ Pencil</button>
+                        <button class="tool-button brush-tool" id="markerTool" data-tool="marker" onclick="setDrawingTool('marker')">🖍 Marker</button>
+                        <button class="tool-button brush-tool" id="highlighterTool" data-tool="highlighter" onclick="setDrawingTool('highlighter')">🖌 Highlighter</button>
+                        <button class="tool-button brush-tool" id="eraserTool" data-tool="eraser" onclick="setDrawingTool('eraser')">🩹 Eraser</button>
+                        <button class="tool-button" onclick="undoDrawing()">↩ Undo</button>
+                        <button class="tool-button" onclick="redoDrawing()">↪ Redo</button>
+                        <button class="tool-button" onclick="clearDrawing()">🗑 Clear</button>
+
+                        <div class="brush-size-wrap">
+                            <span>Brush</span>
+                            <input id="brushSize" type="range" min="2" max="35" value="7">
+                        </div>
+                    </div>
+
+                    <div class="palette-box">
+                        <div class="palette-title">Your color</div>
+                        <div class="palette-group" id="paletteGroup"></div>
+                    </div>
+
+                    <div class="drawing-bottom">
+                        <span id="selectedDrawingName">Start drawing! ✨</span>
+                        <button class="save-drawing" onclick="finishDrawing()">✓ Done</button>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- PUBLISH PROMPT -->
+
+<div class="drawing-complete-overlay" id="publishPromptOverlay">
+    <div class="drawing-complete-card">
+        <div class="complete-emoji">🎨✨</div>
+        <h2>WOULD YOU LIKE TO PUBLISH YOUR ART?</h2>
+        <p>Your drawing can be added to the Art Wall for others to see.</p>
+        <div class="publish-actions">
+            <button onclick="declinePublish()">No, just finish</button>
+            <button class="publish-primary" onclick="openPublishScreen()">Yes, publish it! 💗</button>
+        </div>
+    </div>
+</div>
+
+<!-- PUBLISH SCREEN -->
+
+<div class="publish-overlay" id="publishOverlay">
+    <div class="publish-card">
+        <h2>Publish your art ✨</h2>
+        <p>Preview your drawing, add a little feedback, and give it a star rating.</p>
+
+        <div class="publish-preview-wrap">
+            <img id="publishPreview" alt="Preview of your artwork">
+        </div>
+
+        <div class="publish-field">
+            <label for="publishCaption">Feedback / caption</label>
+            <textarea id="publishCaption" maxlength="280" placeholder="Tell us a little about your artwork..."></textarea>
+        </div>
+
+        <div class="publish-field">
+            <label>Your rating</label>
+            <div class="star-rating" id="publishRating" role="radiogroup" aria-label="Artwork rating">
+                <button class="rating-star" type="button" data-rating="1" aria-label="1 star">★</button>
+                <button class="rating-star" type="button" data-rating="2" aria-label="2 stars">★</button>
+                <button class="rating-star" type="button" data-rating="3" aria-label="3 stars">★</button>
+                <button class="rating-star" type="button" data-rating="4" aria-label="4 stars">★</button>
+                <button class="rating-star" type="button" data-rating="5" aria-label="5 stars">★</button>
+            </div>
+        </div>
+
+        <div class="publish-actions">
+            <button onclick="closePublishScreen()">Back</button>
+            <button class="publish-primary" onclick="publishArtwork()">Publish ✨</button>
+        </div>
+        <p class="publish-limit-note" id="publishLimitNote"></p>
+    </div>
+</div>
+
+<!-- ART WALL -->
+
+<section class="section art-wall-section" id="artWall">
+    <div class="art-wall-heading">
+        <div class="section-label">06 — Art Wall</div>
+        <h2>See what everyone made.</h2>
+        <p>A separate little gallery for the drawings people choose to publish.</p>
+        <div class="owner-access-row">
+            <button class="owner-mode-button" id="ownerModeButton" type="button" onclick="toggleOwnerMode()">Owner access</button>
+            <span class="owner-access-note">This is only for the owner to remove improper or inappropriate drawings.</span>
+        </div>
+    </div>
+
+    <div class="art-wall-empty" id="artWallEmpty">
+        <div class="empty-emoji">🎨✨</div>
+        <h3>The Art Wall is blank right now.</h3>
+        <p>Be the first one to publish your art!</p>
+    </div>
+
+    <div class="art-wall-grid" id="artWallGrid"></div>
+</section>
+
+
+<!-- OWNER ACCESS POPUP -->
+<div class="owner-access-overlay" id="ownerAccessOverlay" aria-hidden="true">
+    <div class="owner-access-box">
+        <div class="delete-confirm-emoji">🔐</div>
+        <h3>Owner access</h3>
+        <p>Enter the owner password to manage all artwork.</p>
+        <input id="ownerPasswordInput" class="owner-password-input" type="password" autocomplete="off" placeholder="Enter password" aria-label="Owner password">
+        <p class="owner-password-error" id="ownerPasswordError"></p>
+        <div class="delete-confirm-actions">
+            <button type="button" id="ownerCancelButton">Cancel</button>
+            <button type="button" class="delete-yes-button" id="ownerUnlockButton">Unlock</button>
+        </div>
+    </div>
+</div>
+
+<!-- DELETE CONFIRMATION POPUP -->
+<div class="delete-confirm-overlay" id="deleteConfirmOverlay" aria-hidden="true">
+    <div class="delete-confirm-box">
+        <div class="delete-confirm-emoji">🗑️</div>
+        <h3>Are you sure you want to delete this drawing?</h3>
+        <p>This will remove the artwork from the Art Wall.</p>
+        <div class="delete-confirm-actions">
+            <button type="button" id="deleteNoButton">No</button>
+            <button type="button" class="delete-yes-button" id="deleteYesButton">Yes, delete it</button>
+        </div>
+    </div>
+</div>
+
+<!-- DRAWING COMPLETE POPUP -->
+
+<div class="drawing-complete-overlay" id="drawingCompleteOverlay">
+    <div class="drawing-complete-card">
+        <div class="complete-emoji">🎨✨</div>
+        <h2>CONGRATSSS! YOU DID IT! 💗</h2>
+        <p>
+            You just created something that is completely yours. Drawing is one of the many ways we can express our thoughts, feelings, and ideas — sometimes without needing any words.
+        </p>
+        <button onclick="closeCompletePopup()">Done ✨</button>
+    </div>
+</div>
+
+
+<footer>
+
+    <div class="footer-logo">
+        What's your hue?
+    </div>
+
+    <p>
+        Color is personal. Psychology is complicated. That's the fun part.
+    </p>
+
+
+    <p class="site-copyright">© 2026 Krisha Bharati — Original work for “What’s Your Hue?”. All rights reserved.</p>
+</footer>
+
+
+<script>
+
+/* COLOR LAB */
+
+const colorInfo = {
+
+    red: {
+        title: "Red — intense & attention-grabbing",
+        description:
+        "Red is often linked with intensity, urgency, excitement and attention. It can feel powerful or stimulating, but the context around it can completely change the impression."
+    },
+
+    orange: {
+        title: "Orange — warm & energetic",
+        description:
+        "Orange is often associated with warmth, energy, playfulness and social environments. Brightness and saturation can make it feel especially lively."
+    },
+
+    yellow: {
+        title: "Yellow — bright & stimulating",
+        description:
+        "Yellow is commonly associated with brightness, optimism and attention. Because it is visually strong, very bright yellows can also feel intense."
+    },
+
+    green: {
+        title: "Green — natural & balanced",
+        description:
+        "Green is often connected with nature, balance, freshness and restoration. Personal experiences with plants and nature can influence these associations."
+    },
+
+    blue: {
+        title: "Blue — spacious & calming",
+        description:
+        "Blue is frequently linked with calmness, coolness, trust and spaciousness. But the exact shade and surrounding colors matter a lot."
+    },
+
+    purple: {
+        title: "Purple — imaginative & mysterious",
+        description:
+        "Purple can evoke creativity, mystery, imagination and unusual associations. Its meaning also changes across cultures and contexts."
+    },
+
+    grey: {
+        title: "Grey — neutral & quiet",
+        description:
+        "Grey can feel quiet, serious, neutral, balanced or distant. It often takes on the mood of the colors and environment around it."
+    },
+
+    brown: {
+        title: "Dark Brown — grounded & warm",
+        description:
+        "Dark brown is often connected with earthiness, stability, warmth and natural materials. Texture and context can strongly influence how it feels."
+    },
+
+    black: {
+        title: "Black — bold & visually strong",
+        description:
+        "Black can communicate seriousness, sophistication, mystery, contrast or visual weight. Its meaning depends heavily on what surrounds it."
+    }
+
+};
+
+
+let currentColor = "";
+
+
+function showColor(color) {
+
+    currentColor = color;
+
+    document.getElementById("colorTitle").textContent =
+        colorInfo[color].title;
+
+    document.getElementById("colorDescription").textContent =
+        colorInfo[color].description;
+
+    document.getElementById("colorResult").classList.add("active");
+
+    document.getElementById("colorResult").scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+
+}
+
+
+function showReaction(reaction) {
+
+    const messages = {
+
+        red: {
+            calm:
+            "Soft red can feel surprisingly calm. Muted shades can make a space feel cozy, quiet, or even a little warm.",
+
+            happy:
+            "Red can feel warm and happy when you connect it with things like love, hearts, celebrations, or a cozy fire.",
+
+            energetic:
+            "Red can bring the ENERGY. Its intensity can make things feel more exciting, active, or like something is about to happen.",
+
+            safe:
+            "Warm reds can feel comforting. If they remind you of love, warmth, or a cozy place, they can give you that safe feeling.",
+
+            tense:
+            "Red can grab your attention FAST. Its intensity can make you feel more alert, rushed, or even a little on edge.",
+
+            nothing:
+            "If you see red everywhere, your brain can stop making a big deal out of it. After a while, it can just feel like… red."
+        },
+
+        yellow: {
+            calm:
+            "Soft yellow can feel really peaceful. Think warm morning sunlight—it can make everything feel a little slower and easier.",
+
+            happy:
+            "Yellow is basically sunshine in color form. Its brightness can make things feel cheerful, playful, and a little more positive.",
+
+            energetic:
+            "Yellow can wake your eyes up FAST. Its brightness can make you feel more alert, lively, and ready to do something.",
+
+            safe:
+            "Gentle yellow can feel warm and familiar. It can remind you of sunlight, home, or those quiet mornings when everything feels okay.",
+
+            tense:
+            "Super-bright or weird neon yellow can be A LOT. It grabs your eyes so quickly that it can make you feel restless or a little on edge.",
+
+            nothing:
+            "Very pale yellow can almost disappear into the background. Your brain might barely notice it after a while."
+        },
+
+        orange: {
+            calm:
+            "Soft orange can feel surprisingly cozy. Think sunset light or a little candle—it can make things feel warm and relaxed.",
+
+            happy:
+            "Orange has a naturally playful feeling. Its warmth can make things feel fun, friendly, and a little more exciting.",
+
+            energetic:
+            "Orange can bring a LOT of energy. Its warmth and brightness can make you feel awake, playful, and ready to move.",
+
+            safe:
+            "Warm orange can feel familiar and comforting. It can remind you of sunsets, cozy rooms, or somewhere you already feel at home.",
+
+            tense:
+            "Bright orange can grab your attention FAST. That loud, in-your-face feeling can make you feel rushed, restless, or a little pressured.",
+
+            nothing:
+            "A dull, brownish orange can blend into the background pretty easily. After a while, your brain might just stop noticing it."
+        },
+
+        green: {
+            calm:
+            "Green can make things feel calmer FAST. It reminds your brain of trees, grass, leaves, and places where you can just breathe.",
+
+            happy:
+            "Bright green can feel fresh and cheerful. It has that ‘something new is starting’ feeling that can lift your mood a little.",
+
+            energetic:
+            "Bright green can feel super lively. It can make you think of movement, growth, and that fresh burst of energy you get in spring.",
+
+            safe:
+            "Green can feel steady and familiar. When it reminds you of nature or places you know well, it can give you a comfortable, safe feeling.",
+
+            tense:
+            "Weird-looking neon greens can be STRANGE. They can look so unnatural or intense that they might make you feel uneasy or a little on edge.",
+
+            nothing:
+            "Muted greens can blend in really easily. Dusty olive or soft sage can become part of the background until you barely notice it."
+        },
+
+        blue: {
+            calm:
+            "Blue can slow things down a little. Soft shades can remind you of clear skies or still water, making everything feel quieter.",
+
+            happy:
+            "Bright sky blue can feel fresh and uplifting. It can give you that ‘nice day outside’ feeling almost instantly.",
+
+            energetic:
+            "Bright or electric blue can wake things up. It has a crisp, sharp feeling that can make you feel more alert and switched on.",
+
+            safe:
+            "Blue can feel dependable and familiar. Think clear skies, calm water, or something you already know well—it can feel reassuring.",
+
+            tense:
+            "Dark stormy blue can feel HEAVY. It can make a space seem colder, quieter, or more serious, while neon blue can feel almost too intense.",
+
+            nothing:
+            "Blue is EVERYWHERE—screens, jeans, skies, water. Because your brain sees it so often, it can sometimes fade into the background."
+        },
+
+        purple: {
+            calm:
+            "Soft lavender can feel really gentle. It can create that quiet little bubble where everything feels slower and less overwhelming.",
+
+            happy:
+            "Bright purple can feel fun and a little magical. It can spark that playful, creative feeling where your brain suddenly has 20 ideas.",
+
+            energetic:
+            "Vibrant purple can feel full of energy. Its boldness can make things seem more exciting, creative, and ready for something new.",
+
+            safe:
+            "Soft purple can feel comforting and protective. It can almost feel like having your own little quiet space away from everything else.",
+
+            tense:
+            "Dark purple can feel INTENSE without being loud. It can make things seem mysterious, heavy, or just a little unsettling.",
+
+            nothing:
+            "Dusty or muted purple can be pretty easy to ignore. If it's soft enough, your brain might let it fade into the background."
+        },
+
+        grey: {
+            calm:
+            "Grey is really quiet. Because it doesn't demand much attention, it can make everything around it feel still and peaceful.",
+
+            happy:
+            "Grey isn't exactly sunshine, but a bright silver-grey can feel fresh and lively. It can catch the light and make things feel a little brighter.",
+
+            energetic:
+            "Grey usually keeps things pretty calm, but shiny silver can change that. It catches your eye and can give off a sharper, more energetic feeling.",
+
+            safe:
+            "Grey can feel solid and dependable. It can remind you of something strong and steady that isn't going anywhere anytime soon.",
+
+            tense:
+            "Dark stormy grey can feel HEAVY. It can make everything seem colder and more serious, like the sky right before a huge storm.",
+
+            nothing:
+            "Grey is basically the king of ‘nothing.’ It's neutral, quiet, and REALLY easy for your brain to tune out."
+        },
+
+        brown: {
+            calm:
+            "Dark brown can feel really grounded. Think wooden furniture, earth, or a cozy library—it can make things feel warm and settled.",
+
+            happy:
+            "Brown isn't usually loud or bubbly, but it can still feel nice. Its warm, familiar feeling can make a space feel comfortable and welcoming.",
+
+            energetic:
+            "Dark brown isn't exactly a high-energy color. Its energy feels more steady and grounded—quiet, but still there.",
+
+            safe:
+            "Dark brown can feel like home. Wood, earth, warm rooms, and old books can give it that familiar ‘you're safe here’ feeling.",
+
+            tense:
+            "Really dark or muddy brown can feel HEAVY. If there's too much of it, a space can start to feel closed-in, dull, or a little uncomfortable.",
+
+            nothing:
+            "Brown can blend into the background REALLY easily. Because it's so common in nature and everyday things, your brain can stop paying attention to it."
+        },
+
+        black: {
+            calm:
+            "Black can feel surprisingly peaceful. Think of a quiet night when everything is dark, still, and finally a little less noisy.",
+
+            happy:
+            "Black isn't bright or cheerful, but it can still feel good. If it reminds you of something you love or feel comfortable around, that changes everything.",
+
+            energetic:
+            "Black doesn't need to be bright to feel powerful. It can give things a sharp, bold energy that makes them feel strong and confident.",
+
+            safe:
+            "Black can feel protective for some people. It can almost feel like having a little space around you where the rest of the world can't get in.",
+
+            tense:
+            "Black can feel INTENSE because you can't see what's beyond it. That unknown feeling can make things seem mysterious, heavy, or a little unsettling.",
+
+            nothing:
+            "Black can feel like a complete blank space. It doesn't ask for much attention, so sometimes your brain just… lets it be there."
+        }
+
+    };
+
+    document.getElementById("colorDescription").textContent =
+        messages[currentColor][reaction];
+
+}
+
+
+/* QUIZ */
+
+const questions = [
+
+    {
+        text:
+        "Which color do you think signifies you the most?",
+
+        answers: [
+            { color: "black", text: "Black" },
+            { color: "blue", text: "Blue" },
+            { color: "brown", text: "Dark Brown" },
+            { color: "green", text: "Green" },
+            { color: "grey", text: "Grey" },
+            { color: "orange", text: "Orange" },
+            { color: "purple", text: "Purple" },
+            { color: "red", text: "Red" },
+            { color: "yellow", text: "Yellow" }
+        ]
+    },
+
+    {
+        text:
+        "Which color makes you feel safe?",
+
+        answers: [
+            { color: "black", text: "Black" },
+            { color: "blue", text: "Blue" },
+            { color: "brown", text: "Dark Brown" },
+            { color: "green", text: "Green" },
+            { color: "grey", text: "Grey" },
+            { color: "orange", text: "Orange" },
+            { color: "purple", text: "Purple" },
+            { color: "red", text: "Red" },
+            { color: "yellow", text: "Yellow" }
+        ]
+    },
+
+    {
+        text:
+        "Which color do you think is the opposite of what you signify?",
+
+        answers: [
+            { color: "black", text: "Black" },
+            { color: "blue", text: "Blue" },
+            { color: "brown", text: "Dark Brown" },
+            { color: "green", text: "Green" },
+            { color: "grey", text: "Grey" },
+            { color: "orange", text: "Orange" },
+            { color: "purple", text: "Purple" },
+            { color: "red", text: "Red" },
+            { color: "yellow", text: "Yellow" }
+        ]
+    },
+
+    {
+        text:
+        "Which color makes you feel positive?",
+
+        answers: [
+            { color: "black", text: "Black" },
+            { color: "blue", text: "Blue" },
+            { color: "brown", text: "Dark Brown" },
+            { color: "green", text: "Green" },
+            { color: "grey", text: "Grey" },
+            { color: "orange", text: "Orange" },
+            { color: "purple", text: "Purple" },
+            { color: "red", text: "Red" },
+            { color: "yellow", text: "Yellow" }
+        ]
+    },
+
+    {
+        text:
+        "Which color makes you feel negative?",
+
+        answers: [
+            { color: "black", text: "Black" },
+            { color: "blue", text: "Blue" },
+            { color: "brown", text: "Dark Brown" },
+            { color: "green", text: "Green" },
+            { color: "grey", text: "Grey" },
+            { color: "orange", text: "Orange" },
+            { color: "purple", text: "Purple" },
+            { color: "red", text: "Red" },
+            { color: "yellow", text: "Yellow" }
+        ]
+    },
+
+    {
+        text:
+        'Which color do you think best suits the sentence "I love you"?',
+
+        answers: [
+            { color: "black", text: "Black" },
+            { color: "blue", text: "Blue" },
+            { color: "brown", text: "Dark Brown" },
+            { color: "green", text: "Green" },
+            { color: "grey", text: "Grey" },
+            { color: "orange", text: "Orange" },
+            { color: "purple", text: "Purple" },
+            { color: "red", text: "Red" },
+            { color: "yellow", text: "Yellow" }
+        ]
+    }
+];
+
+
+let currentQuestion = 0;
+
+let scores = {
+    calm: 0,
+    bold: 0,
+    curious: 0,
+    grounded: 0,
+    reflective: 0,
+    intense: 0
+};
+
+
+const colorProfiles = {
+
+    blue: "calm",
+    green: "calm",
+
+    red: "bold",
+    orange: "bold",
+
+    yellow: "curious",
+    purple: "curious",
+
+    brown: "grounded",
+
+    grey: "reflective",
+    white: "reflective",
+
+    black: "intense"
+
+};
+
+
+function loadQuestion() {
+
+    const q = questions[currentQuestion];
+
+    document.getElementById("questionNumber").textContent =
+        `Question ${currentQuestion + 1} of ${questions.length}`;
+
+    document.getElementById("questionText").textContent =
+        q.text;
+
+    const answersContainer =
+        document.getElementById("answers");
+
+    answersContainer.innerHTML = "";
+
+    q.answers.forEach(answer => {
+
+        const button = document.createElement("button");
+
+        button.className = "answer";
+
+        button.innerHTML = `
+            <span
+                class="answer-color"
+                style="background:${getColor(answer.color)}"
+            ></span>
+            ${answer.text}
+        `;
+
+        button.onclick = () => selectAnswer(answer.color);
+
+        answersContainer.appendChild(button);
+
+    });
+
+    document.getElementById("progressBar").style.width =
+        `${(currentQuestion / questions.length) * 100}%`;
+
+}
+
+
+function getColor(color) {
+
+    const colors = {
+
+        red: "#D9534F",
+        orange: "#E8914D",
+        yellow: "#F3D56B",
+        green: "#9BB59B",
+        blue: "#91B7CE",
+        purple: "#B59AC5",
+        grey: "#B8B4AF",
+        brown: "#765440",
+        black: "#302B28",
+        white: "#FAF8F3"
+
+    };
+
+    return colors[color];
+
+}
+
+
+function selectAnswer(color) {
+
+    const profile = colorProfiles[color];
+
+    scores[profile]++;
+
+    currentQuestion++;
+
+    if (currentQuestion >= questions.length) {
+
+        showQuizResult();
+
+    } else {
+
+        loadQuestion();
+
+    }
+
+}
+
+
+function showQuizResult() {
+
+    document.getElementById("quizContent").style.display = "none";
+
+    document.getElementById("progressBar").style.width = "100%";
+
+    document.getElementById("quizResult").classList.add("active");
+
+
+    let highestProfile =
+        Object.keys(scores).reduce((a, b) =>
+            scores[a] > scores[b] ? a : b
+        );
+
+
+    const results = {
+
+        calm: {
+            title: "Calm & Composed",
+            description:
+            "Your choices leaned toward softer, calmer and more balanced color associations. You may be drawn to colors and impressions that feel settled rather than overwhelming."
+        },
+
+        bold: {
+            title: "Bold & Energetic",
+            description:
+            "Your choices leaned toward vivid, strong and attention-grabbing color associations. You may be especially drawn to bold colors, energetic impressions and higher visual intensity."
+        },
+
+        curious: {
+            title: "Curious & Imaginative",
+            description:
+            "Your choices leaned toward playful, imaginative and expressive color associations. You may enjoy colors that feel unusual, creative or open to interpretation."
+        },
+
+        grounded: {
+            title: "Grounded & Steady",
+            description:
+            "Your choices leaned toward warm, stable and grounded color associations. You may be drawn to colors that feel familiar, comforting or dependable."
+        },
+
+        reflective: {
+            title: "Reflective & Thoughtful",
+            description:
+            "Your choices leaned toward quieter, muted and thoughtful color associations. You may appreciate colors that feel subtle, layered or easy to sit with."
+        },
+
+        intense: {
+            title: "Intense & Independent",
+            description:
+            "Your choices leaned toward strong contrast, depth and visual weight. You may be drawn to colors that feel direct, dramatic, powerful or intense."
+        }
+
+    };
+
+
+    document.getElementById("resultTitle").textContent =
+        results[highestProfile].title;
+
+    document.getElementById("resultDescription").textContent =
+        results[highestProfile].description;
+
+}
+
+
+function restartQuiz() {
+
+    currentQuestion = 0;
+
+    scores = {
+        calm: 0,
+        bold: 0,
+        curious: 0,
+        grounded: 0,
+        reflective: 0,
+        intense: 0
+    };
+
+    document.getElementById("quizResult").classList.remove("active");
+
+    document.getElementById("quizContent").style.display = "block";
+
+    loadQuestion();
+
+}
+
+
+
+/* COLOR SPIN + DRAWING */
+
+const spinColors = [
+    {
+        key: "red", name: "Red", hex: "#D9534F",
+        shades: [
+            { name: "Soft Red", hex: "#E88A86" },
+            { name: "Coral Red", hex: "#DF6A65" },
+            { name: "Red", hex: "#D9534F" },
+            { name: "Deep Red", hex: "#B83E3A" },
+            { name: "Dark Red", hex: "#8F2F2C" }
+        ]
+    },
+    {
+        key: "orange", name: "Orange", hex: "#E8914D",
+        shades: [
+            { name: "Peach Orange", hex: "#F3B987" },
+            { name: "Soft Orange", hex: "#EDA36A" },
+            { name: "Orange", hex: "#E8914D" },
+            { name: "Burnt Orange", hex: "#C96D35" },
+            { name: "Dark Orange", hex: "#9F4F25" }
+        ]
+    },
+    {
+        key: "yellow", name: "Yellow", hex: "#F3D56B",
+        shades: [
+            { name: "Pale Yellow", hex: "#F8E8A5" },
+            { name: "Soft Yellow", hex: "#F5DD84" },
+            { name: "Yellow", hex: "#F3D56B" },
+            { name: "Golden Yellow", hex: "#D8B83F" },
+            { name: "Deep Yellow", hex: "#A98B24" }
+        ]
+    },
+    {
+        key: "green", name: "Green", hex: "#9BB59B",
+        shades: [
+            { name: "Pale Green", hex: "#C5D5C5" },
+            { name: "Soft Green", hex: "#AEC6AE" },
+            { name: "Green", hex: "#9BB59B" },
+            { name: "Deep Green", hex: "#6F916F" },
+            { name: "Dark Green", hex: "#486B48" }
+        ]
+    },
+    {
+        key: "blue", name: "Blue", hex: "#91B7CE",
+        shades: [
+            { name: "Pale Blue", hex: "#C5DCE8" },
+            { name: "Soft Blue", hex: "#A9C9DB" },
+            { name: "Blue", hex: "#91B7CE" },
+            { name: "Deep Blue", hex: "#5F91AE" },
+            { name: "Dark Blue", hex: "#3F6880" }
+        ]
+    },
+    {
+        key: "purple", name: "Purple", hex: "#B59AC5",
+        shades: [
+            { name: "Pale Purple", hex: "#D8C8E1" },
+            { name: "Soft Purple", hex: "#C5ADD3" },
+            { name: "Purple", hex: "#B59AC5" },
+            { name: "Deep Purple", hex: "#8C6FA1" },
+            { name: "Dark Purple", hex: "#654C78" }
+        ]
+    },
+    {
+        key: "grey", name: "Grey", hex: "#B8B4AF",
+        shades: [
+            { name: "Light Grey", hex: "#D9D6D2" },
+            { name: "Soft Grey", hex: "#C7C3BE" },
+            { name: "Grey", hex: "#B8B4AF" },
+            { name: "Deep Grey", hex: "#817D78" },
+            { name: "Dark Grey", hex: "#5B5854" }
+        ]
+    },
+    {
+        key: "brown", name: "Dark Brown", hex: "#765440",
+        shades: [
+            { name: "Light Brown", hex: "#A88973" },
+            { name: "Soft Brown", hex: "#8F6D58" },
+            { name: "Brown", hex: "#765440" },
+            { name: "Deep Brown", hex: "#5D3F2F" },
+            { name: "Dark Brown", hex: "#432B20" }
+        ]
+    },
+    {
+        key: "black", name: "Black", hex: "#302B28",
+        shades: [
+            { name: "Soft Black", hex: "#595451" },
+            { name: "Charcoal", hex: "#46413E" },
+            { name: "Black", hex: "#302B28" },
+            { name: "Deep Black", hex: "#211E1C" },
+            { name: "True Black", hex: "#11100F" }
+        ]
+    }
+];
+
+
+    
+
+   
+    ;let spunColor=null;let selectedPaintColor="#ffffff";let drawingTool="paint";let drawingHistory=[];let drawingHistoryIndex=-1;let isDrawing=false;let lastDrawPoint=null;
+function spinColorWheel(){const wheel=document.getElementById("colorWheel");const button=document.getElementById("spinButton");const result=document.getElementById("spinResult");button.disabled=true;result.classList.remove("active");const index=Math.floor(Math.random()*spinColors.length);spunColor=spinColors[index];const segmentCenter=(index*40)+20;const extraTurns=6+Math.floor(Math.random()*3);const targetRotation=(extraTurns*360)+(360-segmentCenter)+(Math.random()*24-12);wheel.style.transform=`rotate(${targetRotation}deg)`;setTimeout(()=>{document.getElementById("spinColorTitle").textContent=`${spunColor.name} 💫`;document.getElementById("spinColorText").textContent=`${spunColor.name} is your main color. Pure luck picked it — now you get to decide what to create.`;result.classList.add("active");button.disabled=false;},4100);}
+function openDrawingPicker(){if(!spunColor)return;const overlay=document.getElementById("drawingOverlay");document.getElementById("drawingColorLabel").textContent=`YOUR COLOR — ${spunColor.name.toUpperCase()}`;document.getElementById("drawingHeading").textContent="START DRAWING!";document.getElementById("drawingSubheading").textContent=`Draw anything you want with ${spunColor.name}.`;overlay.classList.add("active");renderPalette();selectedPaintColor=spunColor.hex;setDrawingTool("paint");setTimeout(()=>{resizeDrawingCanvas();clearDrawing();},40);}
+function renderPalette(){const palette=document.getElementById("paletteGroup");palette.innerHTML="";const mainLabel=document.createElement("div");mainLabel.className="palette-label";mainLabel.textContent="YOUR COLOR — SHADES & TONES";palette.appendChild(mainLabel);const shades=getColorShades(spunColor.hex,spunColor.name);shades.forEach((shade,index)=>addPaletteColor(shade.hex,shade.name,index===2));selectedPaintColor=spunColor.hex;}
+function getColorShades(hex,name){const palettes={Red:["#FFD6D6","#FF8F8F","#E53935","#B71C1C","#5C0000"],Orange:["#FFE0C2","#FFB15C","#F57C00","#C45100","#7A2600"],Yellow:["#FFF4B8","#FFE66D","#F4C400","#C79A00","#7A5B00"],Green:["#DDF4D6","#9DD68A","#4CAF50","#2E7D32","#123F1A"],Blue:["#DCEEFF","#8FC5FF","#3F8FD9","#155A9C","#0B2E52"],Purple:["#EBDDF5","#C49ADE","#8E5BB7","#5E337D","#321844"],Grey:["#F1F1F1","#C8C8C8","#8E8E8E","#5E5E5E","#303030"],"Dark Brown":["#E8D6C7","#B99478","#765440","#4B3022","#24150F"],Black:["#D9D9D9","#A6A6A6","#666666","#303030","#000000"]};const values=palettes[name]||[hex,hex,hex,hex,hex];const labels=["Light","Soft","Main","Deep","Dark"];return values.map((color,index)=>({hex:color,name:`${labels[index]} ${name}`}));}
+function addPaletteColor(hex,name,isMain){const palette=document.getElementById("paletteGroup");const button=document.createElement("button");button.className="palette-color";button.title=isMain?`${name} — primary color`:name;button.setAttribute("aria-label",button.title);button.style.background=hex;if(hex.toLowerCase()===selectedPaintColor.toLowerCase()){button.classList.add("active");}button.onclick=()=>{selectedPaintColor=hex;document.querySelectorAll(".palette-color").forEach(item=>item.classList.remove("active"));button.classList.add("active");setDrawingTool("paint");};palette.appendChild(button);}
+function resizeDrawingCanvas(){
+    const canvas=document.getElementById("drawingCanvas");
+    const wrap=document.getElementById("canvasWrap");
+    if(!canvas||!wrap||wrap.clientWidth<20||wrap.clientHeight<20)return;
+
+    const oldCanvas=document.createElement("canvas");
+    oldCanvas.width=canvas.width;
+    oldCanvas.height=canvas.height;
+    if(canvas.width&&canvas.height){
+        oldCanvas.getContext("2d").drawImage(canvas,0,0);
+    }
+
+    const ratio=window.devicePixelRatio||1;
+    const width=wrap.clientWidth;
+    const height=wrap.clientHeight;
+    canvas.width=Math.round(width*ratio);
+    canvas.height=Math.round(height*ratio);
+    canvas.style.width=`${width}px`;
+    canvas.style.height=`${height}px`;
+
+    const ctx=canvas.getContext("2d");
+    ctx.setTransform(1,0,0,1,0,0);
+    ctx.fillStyle="#fff";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+
+    if(oldCanvas.width&&oldCanvas.height){
+        ctx.drawImage(oldCanvas,0,0,oldCanvas.width,oldCanvas.height,0,0,canvas.width,canvas.height);
+    }
+
+    ctx.setTransform(ratio,0,0,ratio,0,0);
+}
+function getCanvasPoint(event){
+    const canvas=document.getElementById("drawingCanvas");
+    const rect=canvas.getBoundingClientRect();
+    return {
+        x:event.clientX-rect.left,
+        y:event.clientY-rect.top
+    };
+}
+function drawDot(point){
+    const canvas=document.getElementById("drawingCanvas");
+    const ctx=canvas.getContext("2d");
+    const size=Number(document.getElementById("brushSize").value);
+    ctx.beginPath();
+    ctx.arc(point.x,point.y,size/2,0,Math.PI*2);
+    ctx.fillStyle=drawingTool==="eraser"?"#fff":selectedPaintColor;
+    ctx.globalAlpha=drawingTool==="highlighter"?0.28:1;
+    ctx.fill();
+    ctx.globalAlpha=1;
+}
+function startDrawing(event){
+    if(!spunColor)return;
+    event.preventDefault();
+    isDrawing=true;
+    lastDrawPoint=getCanvasPoint(event);
+    const canvas=document.getElementById("drawingCanvas");
+    if(canvas.setPointerCapture)canvas.setPointerCapture(event.pointerId);
+    saveDrawingState();
+    drawDot(lastDrawPoint);
+}
+function draw(event){
+    if(!isDrawing)return;
+    event.preventDefault();
+
+    const point=getCanvasPoint(event);
+    const canvas=document.getElementById("drawingCanvas");
+    const ctx=canvas.getContext("2d");
+    const size=Number(document.getElementById("brushSize").value);
+
+    ctx.beginPath();
+    ctx.moveTo(lastDrawPoint.x,lastDrawPoint.y);
+    ctx.lineTo(point.x,point.y);
+    ctx.lineWidth=drawingTool==="pencil"
+        ?Math.max(2,size*0.55)
+        :drawingTool==="marker"
+        ?size*1.35
+        :drawingTool==="highlighter"
+        ?size*2.4
+        :size;
+    ctx.lineCap="round";
+    ctx.lineJoin="round";
+    ctx.strokeStyle=drawingTool==="eraser"?"#fff":selectedPaintColor;
+    ctx.globalAlpha=drawingTool==="highlighter"?0.28:1;
+    ctx.stroke();
+    ctx.globalAlpha=1;
+    lastDrawPoint=point;
+}
+function stopDrawing(event){
+    if(!isDrawing)return;
+    const canvas=document.getElementById("drawingCanvas");
+    if(event&&canvas.hasPointerCapture&&canvas.hasPointerCapture(event.pointerId)){
+        canvas.releasePointerCapture(event.pointerId);
+    }
+    isDrawing=false;
+    lastDrawPoint=null;
+}
+function setDrawingTool(tool){
+    drawingTool=tool;
+    document.querySelectorAll(".brush-tool").forEach(button=>button.classList.toggle("active",button.dataset.tool===tool));
+    const canvas=document.getElementById("drawingCanvas");
+    if(canvas)canvas.style.cursor="default";
+}
+function getDrawingSnapshot(){
+    return document.getElementById("drawingCanvas").toDataURL("image/png");
+}
+function restoreDrawingSnapshot(snapshot){
+    const canvas=document.getElementById("drawingCanvas");
+    const ctx=canvas.getContext("2d");
+    const ratio=window.devicePixelRatio||1;
+    const image=new Image();
+    image.onload=()=>{
+        ctx.setTransform(1,0,0,1,0,0);
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        ctx.drawImage(image,0,0,canvas.width,canvas.height);
+        ctx.setTransform(ratio,0,0,ratio,0,0);
+    };
+    image.src=snapshot;
+}
+function saveDrawingState(){
+    const snapshot=getDrawingSnapshot();
+    if(drawingHistoryIndex<drawingHistory.length-1){
+        drawingHistory=drawingHistory.slice(0,drawingHistoryIndex+1);
+    }
+    drawingHistory.push(snapshot);
+    drawingHistoryIndex=drawingHistory.length-1;
+    if(drawingHistory.length>30){
+        drawingHistory.shift();
+        drawingHistoryIndex--;
+    }
+}
+function undoDrawing(){
+    if(drawingHistoryIndex<=0)return;
+    drawingHistoryIndex--;
+    restoreDrawingSnapshot(drawingHistory[drawingHistoryIndex]);
+}
+function redoDrawing(){
+    if(drawingHistoryIndex>=drawingHistory.length-1)return;
+    drawingHistoryIndex++;
+    restoreDrawingSnapshot(drawingHistory[drawingHistoryIndex]);
+}
+function clearDrawing(){
+    const canvas=document.getElementById("drawingCanvas");
+    if(!canvas.width||!canvas.height)return;
+    const ctx=canvas.getContext("2d");
+    const ratio=window.devicePixelRatio||1;
+    ctx.setTransform(1,0,0,1,0,0);
+    ctx.fillStyle="#fff";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+    ctx.setTransform(ratio,0,0,ratio,0,0);
+    drawingHistory=[getDrawingSnapshot()];
+    drawingHistoryIndex=0;
+}
+function finishDrawing(){
+    document.getElementById("drawingOverlay").classList.remove("active");
+    document.getElementById("publishPromptOverlay").classList.add("active");
+}
+function declinePublish(){
+    document.getElementById("publishPromptOverlay").classList.remove("active");
+    document.getElementById("drawingCompleteOverlay").classList.add("active");
+}
+function closeCompletePopup(){
+    document.getElementById("drawingCompleteOverlay").classList.remove("active");
+}
+function closeDrawingModal(){
+    document.getElementById("drawingOverlay").classList.remove("active");
+}
+const drawingCanvas=document.getElementById("drawingCanvas");
+drawingCanvas.addEventListener("pointerdown",startDrawing);
+drawingCanvas.addEventListener("pointermove",draw);
+drawingCanvas.addEventListener("pointerup",stopDrawing);
+drawingCanvas.addEventListener("pointercancel",stopDrawing);
+drawingCanvas.addEventListener("pointerleave",stopDrawing);
+window.addEventListener("resize",()=>{
+    if(document.getElementById("drawingOverlay").classList.contains("active"))resizeDrawingCanvas();
+});
+setTimeout(()=>{resizeDrawingCanvas();},100);
+const ARTWORK_STORAGE_KEY="whatsYourHuePublishedArt";
+const USER_ID_STORAGE_KEY="whatsYourHueUserId";
+// Owner controls are intentionally hidden from normal users.
+// Change this key before publishing your site. In a static/localStorage site this is a convenience control, not secure authentication.
+const OWNER_DELETE_KEY="kiwi";
+let pendingArtwork=null;
+let editingArtworkId=null;
+let publishRating=0;
+let ownerMode=localStorage.getItem("whatsYourHueOwnerSession")==="1";
+
+function getCurrentUserId(){
+    let id=localStorage.getItem(USER_ID_STORAGE_KEY);
+    if(!id){
+        id=`user-${Date.now()}-${Math.random().toString(36).slice(2,10)}`;
+        localStorage.setItem(USER_ID_STORAGE_KEY,id);
+    }
+    return id;
+}
+
+function getPublishedArtworks(){
+    try{
+        const items=JSON.parse(localStorage.getItem(ARTWORK_STORAGE_KEY)||"[]");
+        if(!Array.isArray(items))return [];
+        // Artworks created by an older version may not have an ownerId.
+        // On this browser they are treated as the current user's legacy artwork
+        // so the creator does not lose Edit/Delete access after an update.
+        let changed=false;
+        const currentUser=getCurrentUserId();
+        const normalized=items.map(item=>{
+            if(item && !item.ownerId){
+                changed=true;
+                return {...item,ownerId:currentUser};
+            }
+            return item;
+        });
+        if(changed)localStorage.setItem(ARTWORK_STORAGE_KEY,JSON.stringify(normalized));
+        return normalized;
+    }catch(error){
+        return [];
+    }
+}
+
+function savePublishedArtworks(items){
+    localStorage.setItem(ARTWORK_STORAGE_KEY,JSON.stringify(items));
+}
+
+function getCanvasPreview(){
+    return getDrawingSnapshot();
+}
+
+function openPublishScreen(artworkId=null){
+    const existing=getPublishedArtworks();
+    if(artworkId){
+        const artwork=existing.find(item=>item.id===artworkId);
+        if(!artwork)return;
+        if(!isOwnerOfArtwork(artwork))return;
+        editingArtworkId=artworkId;
+        pendingArtwork={image:artwork.image,color:artwork.color,colorHex:artwork.colorHex};
+        document.getElementById("publishCaption").value=artwork.caption||"";
+        publishRating=Number(artwork.rating)||0;
+        document.getElementById("publishPreview").src=artwork.image;
+    }else{
+        if(existing.filter(item=>isOwnerOfArtwork(item)).length>=3){
+            alert("You can have a maximum of 3 published artworks. Delete one to publish another.");
+            return;
+        }
+        editingArtworkId=null;
+        pendingArtwork={image:getCanvasPreview(),color:spunColor.name,colorHex:spunColor.hex};
+        document.getElementById("publishCaption").value="";
+        publishRating=0;
+        document.getElementById("publishPreview").src=pendingArtwork.image;
+        document.getElementById("publishPromptOverlay").classList.remove("active");
+    }
+    updatePublishStars();
+    updatePublishLimitNote();
+    document.getElementById("publishOverlay").classList.add("active");
+}
+
+function closePublishScreen(){
+    document.getElementById("publishOverlay").classList.remove("active");
+    editingArtworkId=null;
+    pendingArtwork=null;
+}
+
+function updatePublishStars(){
+    document.querySelectorAll(".rating-star").forEach(star=>{
+        star.classList.toggle("active",Number(star.dataset.rating)<=publishRating);
+    });
+}
+
+function updatePublishLimitNote(){
+    const count=getPublishedArtworks().filter(item=>isOwnerOfArtwork(item)).length;
+    const note=document.getElementById("publishLimitNote");
+    note.textContent=`${count} of 3 published artwork slots are in use.`;
+}
+
+function publishArtwork(){
+    if(!pendingArtwork)return;
+    if(publishRating<1){
+        alert("Please choose a rating from 1 to 5 stars.");
+        return;
+    }
+    const items=getPublishedArtworks();
+    const caption=document.getElementById("publishCaption").value.trim();
+    if(editingArtworkId){
+        const index=items.findIndex(item=>item.id===editingArtworkId);
+        if(index===-1 || !isOwnerOfArtwork(items[index]))return;
+        items[index]={...items[index],caption,rating:publishRating,updatedAt:Date.now()};
+    }else{
+        if(items.filter(item=>isOwnerOfArtwork(item)).length>=3){
+            alert("You can have a maximum of 3 published artworks. Delete one to publish another.");
+            return;
+        }
+        items.push({
+            id:`art-${Date.now()}-${Math.random().toString(36).slice(2,8)}`,
+            ownerId:getCurrentUserId(),
+            image:pendingArtwork.image,
+            color:pendingArtwork.color,
+            colorHex:pendingArtwork.colorHex,
+            caption,
+            rating:publishRating,
+            createdAt:Date.now(),
+            updatedAt:Date.now()
+        });
+    }
+    savePublishedArtworks(items);
+    renderArtWall();
+    document.getElementById("publishOverlay").classList.remove("active");
+    editingArtworkId=null;
+    pendingArtwork=null;
+    document.getElementById("drawingCompleteOverlay").classList.add("active");
+}
+
+function isOwnerOfArtwork(artwork){
+    return artwork && artwork.ownerId===getCurrentUserId();
+}
+
+// Owner access uses an in-page password popup instead of the browser prompt.
+function toggleOwnerMode(){
+    if(ownerMode){
+        ownerMode=false;
+        localStorage.removeItem("whatsYourHueOwnerSession");
+        updateOwnerModeButton();
+        renderArtWall();
+        return;
+    }
+    const overlay=document.getElementById("ownerAccessOverlay");
+    const input=document.getElementById("ownerPasswordInput");
+    const error=document.getElementById("ownerPasswordError");
+    if(!overlay || !input)return;
+    error.textContent="";
+    input.value="";
+    overlay.classList.add("active");
+    overlay.setAttribute("aria-hidden","false");
+    setTimeout(()=>input.focus(),50);
+}
+
+function closeOwnerAccess(){
+    const overlay=document.getElementById("ownerAccessOverlay");
+    if(overlay){
+        overlay.classList.remove("active");
+        overlay.setAttribute("aria-hidden","true");
+    }
+}
+
+function unlockOwnerAccess(){
+    const input=document.getElementById("ownerPasswordInput");
+    const error=document.getElementById("ownerPasswordError");
+    if(!input)return;
+    if(input.value.trim()===OWNER_DELETE_KEY){
+        ownerMode=true;
+        localStorage.setItem("whatsYourHueOwnerSession","1");
+        closeOwnerAccess();
+        updateOwnerModeButton();
+        renderArtWall();
+        alert("Owner access enabled. You can now delete any artwork.");
+    }else{
+        error.textContent="Incorrect password. Try again.";
+        input.focus();
+        input.select();
+    }
+}
+
+function updateOwnerModeButton(){
+    const button=document.getElementById("ownerModeButton");
+    if(!button)return;
+    button.textContent=ownerMode ? "Owner mode on" : "Owner access";
+    button.classList.toggle("active",ownerMode);
+}
+
+let pendingDeleteArtworkId=null;
+
+function deleteArtwork(id){
+    const artwork=getPublishedArtworks().find(item=>item.id===id);
+    if(!artwork)return;
+    const mine=isOwnerOfArtwork(artwork);
+    if(!mine && !ownerMode){
+        alert("You can only delete your own artwork.");
+        return;
+    }
+    pendingDeleteArtworkId=id;
+    const overlay=document.getElementById("deleteConfirmOverlay");
+    if(overlay){
+        overlay.classList.add("active");
+        overlay.setAttribute("aria-hidden","false");
+    }
+}
+
+function closeDeleteConfirmation(){
+    pendingDeleteArtworkId=null;
+    const overlay=document.getElementById("deleteConfirmOverlay");
+    if(overlay){
+        overlay.classList.remove("active");
+        overlay.setAttribute("aria-hidden","true");
+    }
+}
+
+function confirmDeleteArtwork(){
+    if(!pendingDeleteArtworkId)return;
+    const id=pendingDeleteArtworkId;
+    const items=getPublishedArtworks();
+    const artwork=items.find(item=>item.id===id);
+    if(!artwork){
+        closeDeleteConfirmation();
+        renderArtWall();
+        return;
+    }
+    const mine=isOwnerOfArtwork(artwork);
+    if(!mine && !ownerMode){
+        closeDeleteConfirmation();
+        alert("You can only delete your own artwork.");
+        return;
+    }
+    savePublishedArtworks(items.filter(item=>item.id!==id));
+    closeDeleteConfirmation();
+    renderArtWall();
+}
+
+function editArtwork(id){
+    const artwork=getPublishedArtworks().find(item=>item.id===id);
+    if(!artwork)return;
+    if(!isOwnerOfArtwork(artwork)){
+        alert("You can only edit your own artwork.");
+        return;
+    }
+    openPublishScreen(id);
+}
+
+function renderArtWall(){
+    const items=getPublishedArtworks();
+    const empty=document.getElementById("artWallEmpty");
+    const grid=document.getElementById("artWallGrid");
+
+    if(!items.length){
+        empty.style.display="block";
+        grid.innerHTML="";
+        return;
+    }
+
+    empty.style.display="none";
+    grid.innerHTML="";
+    items.slice().reverse().forEach(artwork=>{
+        const card=document.createElement("article");
+        card.className="artwork-card";
+
+        const imageWrap=document.createElement("div");
+        imageWrap.className="artwork-image-wrap";
+
+        const image=document.createElement("img");
+        image.className="artwork-image";
+        image.src=artwork.image;
+        image.alt=`Published ${artwork.color} artwork`;
+        imageWrap.appendChild(image);
+
+        const meta=document.createElement("div");
+        meta.className="artwork-meta";
+
+        const hue=document.createElement("div");
+        hue.className="artwork-hue";
+
+        const hueDot=document.createElement("span");
+        hueDot.className="artwork-hue-dot";
+        hueDot.style.background=artwork.colorHex;
+
+        const hueText=document.createElement("span");
+        hueText.textContent=artwork.color;
+
+        hue.appendChild(hueDot);
+        hue.appendChild(hueText);
+
+        const caption=document.createElement("p");
+        caption.className="artwork-caption";
+        caption.textContent=artwork.caption||"No caption added.";
+
+        const stars=document.createElement("div");
+        stars.className="artwork-stars";
+        stars.textContent="★".repeat(Math.max(0,Math.min(5,Number(artwork.rating)||0)))+
+            "☆".repeat(5-Math.max(0,Math.min(5,Number(artwork.rating)||0)));
+        stars.setAttribute("aria-label",`${artwork.rating} out of 5 stars`);
+
+        const actions=document.createElement("div");
+        actions.className="artwork-actions";
+
+        const isMine=isOwnerOfArtwork(artwork);
+
+        if(isMine){
+            const edit=document.createElement("button");
+            edit.className="edit-artwork";
+            edit.type="button";
+            edit.textContent="Edit";
+            edit.onclick=()=>editArtwork(artwork.id);
+            actions.appendChild(edit);
+        }
+
+        if(isMine || ownerMode){
+            const del=document.createElement("button");
+            del.type="button";
+            del.textContent="Delete";
+            del.onclick=()=>deleteArtwork(artwork.id);
+            actions.appendChild(del);
+        }
+
+        meta.appendChild(hue);
+        meta.appendChild(caption);
+        meta.appendChild(stars);
+        meta.appendChild(actions);
+
+        card.appendChild(imageWrap);
+        card.appendChild(meta);
+        grid.appendChild(card);
+    });
+}
+
+document.querySelectorAll(".rating-star").forEach(star=>{
+    star.addEventListener("click",()=>{
+        publishRating=Number(star.dataset.rating);
+        updatePublishStars();
+    });
+});
+
+const deleteYesButton=document.getElementById("deleteYesButton");
+const deleteNoButton=document.getElementById("deleteNoButton");
+if(deleteYesButton)deleteYesButton.addEventListener("click",confirmDeleteArtwork);
+if(deleteNoButton)deleteNoButton.addEventListener("click",closeDeleteConfirmation);
+const ownerUnlockButton=document.getElementById("ownerUnlockButton");
+const ownerCancelButton=document.getElementById("ownerCancelButton");
+const ownerAccessOverlay=document.getElementById("ownerAccessOverlay");
+const ownerPasswordInput=document.getElementById("ownerPasswordInput");
+if(ownerUnlockButton)ownerUnlockButton.addEventListener("click",unlockOwnerAccess);
+if(ownerCancelButton)ownerCancelButton.addEventListener("click",closeOwnerAccess);
+if(ownerAccessOverlay){
+    ownerAccessOverlay.addEventListener("click",event=>{
+        if(event.target===ownerAccessOverlay)closeOwnerAccess();
+    });
+}
+if(ownerPasswordInput){
+    ownerPasswordInput.addEventListener("keydown",event=>{
+        if(event.key==="Enter")unlockOwnerAccess();
+        if(event.key==="Escape")closeOwnerAccess();
+    });
+}
+
+const deleteConfirmOverlay=document.getElementById("deleteConfirmOverlay");
+if(deleteConfirmOverlay){
+    deleteConfirmOverlay.addEventListener("click",event=>{
+        if(event.target===deleteConfirmOverlay)closeDeleteConfirmation();
+    });
+}
+
+renderArtWall();
+updateOwnerModeButton();
+
+// Basic anti-copy protections for the public page. These discourage casual copying but cannot prevent determined users from accessing client-side source code.
+document.addEventListener("contextmenu",event=>event.preventDefault());
+document.addEventListener("dragstart",event=>event.preventDefault());
+document.addEventListener("selectstart",event=>{
+    if(!event.target.closest("input, textarea"))event.preventDefault();
+});
+
+document.addEventListener("mousemove",event=>{const x=(event.clientX/window.innerWidth-0.5)*20;const y=(event.clientY/window.innerHeight-0.5)*20;document.querySelector(".blob-left-1").style.transform=`translate(${-x}px, ${-y}px)`;document.querySelector(".blob-left-2").style.transform=`translate(${-x * 0.7}px, ${-y * 0.7}px)`;document.querySelector(".blob-left-3").style.transform=`translate(${-x * 0.5}px, ${-y * 0.5}px)`;document.querySelector(".blob-right-1").style.transform=`translate(${x}px, ${y}px)`;document.querySelector(".blob-right-2").style.transform=`translate(${x * 0.7}px, ${y * 0.7}px)`;document.querySelector(".blob-right-3").style.transform=`translate(${x * 0.5}px, ${y * 0.5}px)`;});loadQuestion();
+
+</script>
+</body>
+</html>
